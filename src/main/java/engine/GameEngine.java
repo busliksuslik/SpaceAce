@@ -12,10 +12,13 @@ public class GameEngine implements Runnable{
 	
 	private final IGameLogic gameLogic;
 	
+	private final MouseInput mouseInput;
+	
 	public GameEngine(String windowTitle, int width, int height, boolean vSync, IGameLogic gameLogic) throws Exception {
 		window = new Window(windowTitle, width, height, vSync);
 		this.gameLogic = gameLogic;
 		timer = new Timer();
+		mouseInput = new MouseInput();
 	}
 	
 	@Override
@@ -78,11 +81,12 @@ public class GameEngine implements Runnable{
 	    }
 
 	    protected void input() {
-	        gameLogic.input(window);
+	        mouseInput.input(window);
+	        gameLogic.input(window, mouseInput);
 	    }
 
 	    protected void update(float interval) {
-	        gameLogic.update(interval);
+	        gameLogic.update(interval,mouseInput);
 	    }
 
 	    protected void render() {
