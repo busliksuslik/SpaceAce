@@ -15,7 +15,7 @@ import engine.graph.Texture;
 
 public class DummyGame implements IGameLogic{
 	
-	private static final float MOUSE_SENSITIVITY = 2f;
+	private static final float MOUSE_SENSITIVITY = .2f;
 
     private final Vector3f cameraInc;
 
@@ -165,9 +165,9 @@ public class DummyGame implements IGameLogic{
         } else if (window.isKeyPressed(GLFW_KEY_D)) {
             cameraInc.x = 1;
         }
-        if (window.isKeyPressed(GLFW_KEY_Z)) {
+        if (window.isKeyPressed(GLFW_KEY_LEFT_SHIFT)) {
             cameraInc.y = -1;
-        } else if (window.isKeyPressed(GLFW_KEY_X)) {
+        } else if (window.isKeyPressed(GLFW_KEY_SPACE)) {
             cameraInc.y = 1;
         }
     }
@@ -178,10 +178,8 @@ public class DummyGame implements IGameLogic{
         camera.movePosition(cameraInc.x * CAMERA_POS_STEP, cameraInc.y * CAMERA_POS_STEP, cameraInc.z * CAMERA_POS_STEP);
 
         // Update camera based on mouse            
-        if (mouseInput.isRightButtonPressed()) {
             Vector2f rotVec = mouseInput.getDisplVec();
             camera.moveRotation(rotVec.x * MOUSE_SENSITIVITY, rotVec.y * MOUSE_SENSITIVITY, 0);
-        }
     }
 
     @Override

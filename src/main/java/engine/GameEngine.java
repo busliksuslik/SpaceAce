@@ -16,9 +16,10 @@ public class GameEngine implements Runnable{
 	
 	public GameEngine(String windowTitle, int width, int height, boolean vSync, IGameLogic gameLogic) throws Exception {
 		window = new Window(windowTitle, width, height, vSync);
+		mouseInput = new MouseInput();
 		this.gameLogic = gameLogic;
 		timer = new Timer();
-		mouseInput = new MouseInput();
+		
 	}
 	
 	@Override
@@ -36,6 +37,7 @@ public class GameEngine implements Runnable{
 	protected void init() throws Exception {
 		window.init();
 		timer.init();
+		mouseInput.init(window);
 		gameLogic.init(window);
 	}
 	
